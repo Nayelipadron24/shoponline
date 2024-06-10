@@ -1,0 +1,193 @@
+<p-toast></p-toast>
+<p-toolbar styleClass="mb-4 gap-2">
+    <ng-template pTemplate="left">
+        <p-button 
+            icon="pi pi-plus" (onClick)="openNew()" label="Nuevo" />
+        <p-button 
+            pRipple
+            severity="danger" 
+            label="Delete" 
+            icon="pi pi-trash" 
+            (click)="deleteProduct(producto.id)" 
+            [disabled]="!selectedProductos || !selectedProductos.length" />
+    </ng-template>
+
+    <ng-template pTemplate="right">
+        <p-fileUpload 
+            mode="basic" 
+            accept="image/*" 
+            [maxFileSize]="1000000" 
+            label="Import" 
+            chooseLabel="Import" 
+            class="mr-2 inline-block" />
+        <p-button 
+            pRipple severity="help" 
+            label="Export" icon="pi pi-upload" />
+    </ng-template>
+</p-toolbar>
+<p-dialog header="Detalles del Producto" [(visible)]="productoDialog" [modal]="true" [style]="{width: '50vw'}" [closable]="false">
+    <form [formGroup]="productosForm" (ngSubmit)="saveProducto()">
+      <div class="p-fluid">
+        <div class="p-field">
+            <label for="id">Id</label>
+            <input id="id" type="number" pInputText formControlName="id"  />
+        </div>
+        <div class="p-field">
+          <label for="codigo">Código</label>
+          <input id="codigo" type="text" pInputText formControlName="codigo"/>
+        </div>
+        <div class="p-field">
+          <label for="nombre">Nombre</label>
+          <input id="nombre" type="text" pInputText formControlName="nombre"/>
+        </div>
+        <div class="p-field">
+          <label for="descripcion">Descripción</label>
+          <input id="descripcion" type="text" pInputText formControlName="descripcion"/>
+        </div>
+        <div class="p-field">
+          <label for="precio">Precio</label>
+          <input id="precio" type="number" pInputText formControlName="precio"/>
+        </div>
+        <!-- Otros campos del formulario -->
+        <div class="p-field">
+            <label for="imagen">Imagen</label>
+            <input id="imagen" type="text" pInputText formControlName="imagen"/>
+
+         </div>
+
+         <div class="p-field">
+            <label for="categoria">Categoría</label>
+            <input id="categoria" type="text" pInputText formControlName="categoria"/>
+          </div>
+
+          <div class="p-field">
+            <label for="cantidad">Cantidad</label>
+            <input id="cantidad" type="number" pInputText formControlName="cantidad"/>
+          </div>
+
+          <div class="p-field">
+            <label for="estadoInventario">Estado inventario</label>
+            <input id="estadoInventario" type="text" pInputText formControlName="estadoInventario"/>
+          </div>
+          <div class="p-field">
+            <label for="rating">rating</label>
+            <input id="" type="text" pInputText formControlName="rating"/>
+          </div>
+
+
+
+      </div>
+      <div class="p-dialog-footer">
+        <button type="button" pButton label="Cancelar" icon="pi pi-times" (click)="hideDialog()"></button>
+        <button type="submit" pButton label="Guardar" icon="pi pi-check" ></button>
+      </div>
+    </form>
+  </p-dialog>
+
+<p-table
+    #dt
+    [value]="productos"
+    [rows]="10"
+    [paginator]="true"
+    [globalFilterFields]="['nombre', 'categoria', 'estadoInventario']"
+    [tableStyle]="{ 'min-width': '75rem' }"
+    [(selection)]="selectedProductos"
+    [rowHover]="true"
+    dataKey="id"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [showCurrentPageReport]="true"
+>
+    <ng-template pTemplate="caption">
+        <div class="flex align-items-center justify-content-between">
+            <h5 class="m-0">Manage Products</h5>
+            <span class="p-input-icon-left">
+                <i class="pi pi-search"></i>
+                <input 
+    pInputText 
+    type="text" 
+    (input)="onInputChange($event)" 
+    placeholder="Search..." />
+            
+            </span>
+        </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+        <tr>
+            <th style="width: 4rem">
+                <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+            </th>
+            <th pSortableColumn="nombre" style="min-width:15rem">
+                Name <p-sortIcon field="nombre"></p-sortIcon>
+            </th>
+            <th>
+                Image
+            </th>
+            <th pSortableColumn="precio">
+                Price <p-sortIcon field="precio"></p-sortIcon>
+            </th>
+            <th pSortableColumn="categoria" style="min-width:10rem">
+                Category <p-sortIcon field="categoria"></p-sortIcon>
+            </th>
+            <th pSortableColumn="rating">
+                Reviews <p-sortIcon field="rating"></p-sortIcon>
+            </th>
+            <th pSortableColumn="estadoInventario" style="min-width:10rem">
+                Status <p-sortIcon field="estadoInventario"></p-sortIcon>
+            </th>
+            <th></th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-producto>
+        <tr>
+            <td>
+                <p-tableCheckbox [value]="producto"></p-tableCheckbox>
+            </td>
+            <td>
+                {{ producto.nombre }}
+            </td>
+            <td>
+                <img 
+                    [src]="'https://primefaces.org/cdn/primeng/images/demo/product/' + producto.imagen" 
+                    [alt]="producto.nombre" 
+                    width="50" 
+                    class="shadow-4" />
+            </td>
+            <td>
+                {{ producto.precio | currency : 'USD' }}
+            </td>
+            <td>
+                {{ producto.categoria }}
+            </td>
+            <td>
+                <p-rating [(ngModel)]="producto.rating" [readonly]="true" [cancel]="false"></p-rating>
+            </td>
+            <td>
+                <p-tag [value]="producto.estadoInventario" [severity]="getSeverity(producto.estadoInventario)"></p-tag>
+            </td>
+            <td>
+                <p-button 
+                    pRipple 
+                    icon="pi pi-pencil" 
+                    class="mr-2" 
+                    [rounded]="true" 
+                    [outlined]="true" 
+                    severity="success" 
+                    (click)="editProducto(producto)"></p-button>
+                    
+                <p-button 
+                    pRipple 
+                    icon="pi pi-trash" 
+                    severity="danger" 
+                    [rounded]="true" 
+                    [outlined]="true" 
+                    (click)="deleteProduct(producto.id)"></p-button>
+            </td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="summary">
+        <div class="flex align-items-center justify-content-between">
+            In total there are {{ productos ? productos.length : 0 }} products.
+        </div>
+    </ng-template>
+</p-table>
+

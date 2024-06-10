@@ -11,6 +11,10 @@ import {ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MessageService } from 'primeng/api';
 import { HomeComponent } from './componentes/home/home.component';
+import { ProductosComponent } from './componentes/productos/productos.component';
+import { FormsModule } from '@angular/forms';
+import { ConfirmationService } from 'primeng/api';
+
 
 
 @NgModule({
@@ -19,7 +23,8 @@ import { HomeComponent } from './componentes/home/home.component';
     NavbarComponent,
     LoginComponent,
     RegisterComponent,
-    HomeComponent
+    HomeComponent,
+    ProductosComponent,
   ],
   imports: [
     BrowserModule,
@@ -29,11 +34,13 @@ import { HomeComponent } from './componentes/home/home.component';
     AppRoutingModule,
     PrimengModule,
   
+    FormsModule,
   
   ],
   providers: [
    
     MessageService,
+    ConfirmationService,
     provideClientHydration(),
   ],
   bootstrap: [AppComponent]

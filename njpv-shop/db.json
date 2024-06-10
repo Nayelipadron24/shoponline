@@ -65,6 +65,44 @@
       "fullName": "Nayeli Jaqueline Padrón Velázquez",
       "email": "nayelii.jaqui.p.v@gmail.com",
       "password": "Nayelipadron@"
+    },
+    {
+      "id": "04fe",
+      "fullName": "Nayeli Jaqueline Padrón Velázquez",
+      "email": "nayelii.jaqui.p.v@gmail.com",
+      "password": "Nayelipadron@"
+    },
+    {
+      "id": "6868",
+      "fullName": "Nayeli Jaqueline Padrón Velázquez",
+      "email": "nayelii.jaqui.p.v@gmail.com",
+      "password": "Nayelipadron@"
+    }
+  ],
+  "productos": [
+    {
+      "id": 1,
+      "codigo": "12",
+      "nombre": "BancoAzul",
+      "descripcion": "banco gris",
+      "precio": 12,
+      "imagen": "https://th.bing.com/th/id/OIP.utALZnBvAuKieq1mYm0EtQHaK3?rs=1&pid=ImgDetMain",
+      "categoria": "Bancos",
+      "cantidad": 12,
+      "estadoInventario": "12",
+      "rating": "5"
+    },
+    {
+      "id": 3,
+      "codigo": "12",
+      "nombre": "BancoAzul",
+      "descripcion": "banco gris",
+      "precio": 12,
+      "imagen": "https://th.bing.com/th/id/OIP.utALZnBvAuKieq1mYm0EtQHaK3?rs=1&pid=ImgDetMain",
+      "categoria": "Bancos",
+      "cantidad": 12,
+      "estadoInventario": "12",
+      "rating": "5"
     }
   ]
 }
