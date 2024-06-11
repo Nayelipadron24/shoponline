@@ -8,7 +8,7 @@ import { NavbarComponent } from './componentes/navbar/navbar.component';
 import { LoginComponent } from './componentes/login/login.component';
 import { RegisterComponent } from './componentes/register/register.component';
 import {ReactiveFormsModule} from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, withFetch } from '@angular/common/http';
 import { MessageService } from 'primeng/api';
 import { HomeComponent } from './componentes/home/home.component';
 import { ProductosComponent } from './componentes/productos/productos.component';
@@ -41,6 +41,7 @@ import { ConfirmationService } from 'primeng/api';
    
     MessageService,
     ConfirmationService,
+    
     provideClientHydration(),
   ],
   bootstrap: [AppComponent]
