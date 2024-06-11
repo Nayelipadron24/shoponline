@@ -77,13 +77,25 @@
       "fullName": "Nayeli Jaqueline Padrón Velázquez",
       "email": "nayelii.jaqui.p.v@gmail.com",
       "password": "Nayelipadron@"
+    },
+    {
+      "id": "7c0d",
+      "fullName": "Nayeli Jaqueline Padrón Velázquez",
+      "email": "nayelii.jaqui.p.v@gmail.com",
+      "password": "Nayelipadron@"
+    },
+    {
+      "id": "6d3c",
+      "fullName": "Nayeli Jaqueline Padrón Velázquez",
+      "email": "nayelii.jaqui.p.v@gmail.com",
+      "password": "Nayelipadron@"
     }
   ],
   "productos": [
     {
-      "id": 1,
+      "id": 3,
       "codigo": "12",
-      "nombre": "BancoAzul",
+      "nombre": "BancoBlanco",
       "descripcion": "banco gris",
       "precio": 12,
       "imagen": "https://th.bing.com/th/id/OIP.utALZnBvAuKieq1mYm0EtQHaK3?rs=1&pid=ImgDetMain",
@@ -93,7 +105,7 @@
       "rating": "5"
     },
     {
-      "id": 3,
+      "id": 2,
       "codigo": "12",
       "nombre": "BancoAzul",
       "descripcion": "banco gris",
